@@ -20,14 +20,13 @@ function fetchUserName(userName) {
   });
 }
 
-function showResults(resJson) {
+function showResults(resJson, userName) {
   console.log(resJson);
-  let userInfo = `<h3>User:${userName}</h3>`
+  let userInfo = `<h2>User:${userName}</h2>`
   $('#results').html(userInfo)
   for (let i = 0; i < resJson.length; i++) {
     $('#results').html(`
-    <li>
-    <h4>${resJson[i].name}</h4><br>
+    <li><h4>${resJson[i].name}</h4><br>
     <a href="$resJson[i].html_url">${resJson[i].html_url}</a><br>
     <p>${resJson[i].description}</p>
     </li>    

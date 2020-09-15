@@ -13,10 +13,17 @@ function watchForm() {
 function fetchUserName(userName) {
   console.log("fetching User")
   fetch(`https://api.github.com/users/${userName}/repos`)
-    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      if (res.ok) {
+        return res.json()
+      }
+      return res.json().then(error => Promise.reject(error))
+    })
     .then(resJson => showResults(resJson))
     .catch(error => {
-      console.log(error.message);
+      console.log(error);
+      errorMessage(error)
     });
 }
 
